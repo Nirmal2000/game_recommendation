@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+
+
+.searchactive {
+    display: flex;
+    flex-direction: column; 
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    /* align-items: center;  */
+    /* width: 100%;  */
+    /* justify-content: center;  */
+    /* padding: 20px; */
+}
+
+.firstBackground {
+    /* Updated with relative dimensions */
+    position: absolute;
+    width: calc(100% * 0.3);  /* 250px / 3600px container width */
+    height: calc(100vh * 0.3);  /* 495px / 1200px container height (assuming the viewport height is around 1200px) */
+    left: calc(100% * 0.1);  /* 34px / 3600px container width */
+    top: calc(100vh * 0.1);  /* 13px / 1200px container height */
+
+    background: #F53FA1;
+    filter: blur(374.5px);
+}
+  
+.secondBackground {
+
+    position: absolute;
+    width: calc(100% * 0.3);  /* 250px / 3600px container width */
+    height: calc(100vh * 0.3);  /* 495px / 1200px container height (assuming the viewport height is around 1200px) */
+    right: calc(100% * 0.1);  /* 34px / 3600px container width */
+    bottom: calc(100vh * 0.1);  /* 13px / 1200px container height */
+
+    background: #3F92F5;
+    filter: blur(374.5px);
+
+}
+
+.whatgame {
+    position: absolute;
+    left: calc(100% * 0.5);  /* 34px / 3600px container width */
+    top: calc(100vh * 0.4);  /* 13px / 1200px container height */
+    transform: translate(-50%, -50%);
+  }
+
+.shy{
+    position: absolute;
+    left: calc(100% * 0.5);  /* 34px / 3600px container width */
+    top: calc(100vh * 0.47);  /* 13px / 1200px container height */
+    transform: translate(-50%, -50%);
+}
+
+
+.actionBox {
+    position: absolute;
+    left: calc(100% * 0.5);  /* 34px / 3600px container width */
+    top: calc(100vh * 0.56);
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05); /* Transparent white background */
+    color: white; /* White text color */
+    padding: 10px 10px;
+    border-radius: 30px; /* Rounded corners */    
+    width: 700px;
+}
+
+.actionBoxTop {
+    /* position: absolute; */
+    /* left: calc(100% * 0.5); 
+    top: calc(100vh * 0.10);
+    transform: translate(-50%, -50%); */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05); /* Transparent white background */
+    color: white; /* White text color */
+    /* padding: 10px 10px; */
+    border-radius: 30px; /* Rounded corners */    
+    width: 1000px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.textbox{
+    flex-grow: 1;  /* Takes up remaining space */
+    width: 100%;   /* Start with 100% width of the container */    
+    background: none; /* Transparent background */
+    border: none;  /* No border */
+    color: white;  /* White text color */
+    outline: none;  /* Removes outline on focus */
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 16px;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    resize: none; /* Disable resize handle */
+    overflow: hidden; /* Hide overflow */
+    box-sizing: border-box;    
+}
+
+.iconLeft {
+    width: 24px; /* Adjust based on your icon */
+    height: auto;
+    width: 40px;
+    height: 40px;
+}
+
+.arrowRight {
+    background: none; /* No background for the button */
+    border: none; /* No border */
+    color: white; /* White arrow */
+    font-size: 20px; /* Size of the arrow */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 30px;
+    padding: 10px;
+    height: 30px;
+}
+
+.bginfobox {
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(223, 74, 248, 0.14) 0%, rgba(213, 71, 236, 0.14) 52%, rgba(131, 44, 146, 0.14) 100%);
+    border: 5px solid rgba(119, 137, 233, 0.14);
+    border-radius: 15px;
+    width: 100%;
+    margin-left: 20px;
+}
+
+
+.tagbox{
+padding: 10px;
+background: rgba(78, 56, 219, 0.65);
+border-radius: 9px;
+font-family: 'ABeeZee';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+color: #FFFFFF; 
+display: inline-block;
+}
+
+
+
+
+
