@@ -8,6 +8,14 @@ import {ReactComponent as Shy} from './public/shy.svg'
 import {ReactComponent as Spark} from './public/spark.svg'
 import "swiper/css";
 import {ReactComponent as Rab} from './public/rightarrowbutton.svg'
+import {ReactComponent as UserIcon} from './public/usericon.svg'
+import SearchBar from './SearchBar';
+import Recommendations from './Recommendations';
+import Likebar from './Likebar';
+import Feedback from './Feedback';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from "jwt-decode";
+import userEvent from '@testing-library/user-event';
 
 const Landing = () => {
 
@@ -15,17 +23,26 @@ const Landing = () => {
     const [inputValue, setInputValue] = useState('');
     const [results, setResults] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [isHovered, setIsHovered] = useState(null);
+    const [logged, setLogged] = useState(false);
+    
 
-
-    const handleSearch = async () => {
-        console.log("-->", inputValue)
-        if (!inputValue.trim()) return; 
+    const handleSearch = async (inputValue) => {
+        console.log(inputValue)
+        // if (!inputValue.trim()) return; 
         setSearchActive(true);
         setIsLoading(true);
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/recommend?query=${encodeURIComponent(inputValue)}`);
-            setResults(Object.values(response.data));
-            console.log(Object.values(response.data))
+            console.log("IN",inputValue)
+            const email = localStorage.getItem('email');  // Retrieve email from localStorage
+            const response = await axios.post('http://127.0.0.1:5001/recommend', {
+                query: inputValue,
+                email: email
+            });
+            let temp = response.data.map(e => e[1]).sort((a, b) => b.reco_reason - a.reco_reason);
+            console.log(temp)
+            setResults(temp);
+            console.log(temp)
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -34,6 +51,13 @@ const Landing = () => {
         }
     };
 
+    const loginButton = async () => {
+        window.location.href = 'http://127.0.0.1:5001/google-login';
+    }
+    const logoutButton = async () => {
+        window.location.href = 'http://127.0.0.1:5001/logout';
+    }
+
     return (
         <div className={`${styles.container}`}>            
              <div className={styles.firstBackground}></div>
@@ -41,77 +65,17 @@ const Landing = () => {
 
              {searchActive ? (
                 <>
-                    <div className={styles.searchactive}>
-                        <div className={styles.actionBoxTop}>
-                                <Spark className={styles.iconLeft}/>
-                                <input 
-                                    type="text" 
-                                    placeholder="An action-packed combat game, like Sekiro!" 
-                                    className={styles.textbox} 
-                                    onChange={(e) => {
-                                            console.log("HERE")
-                                            setInputValue(e.target.value)
-                                        }
-                                    }
-                                    value={inputValue}
-                                />
-                                <Rab className={styles.arrowRight} onClick={handleSearch}/>
-                        </div>
-                        <div style={{display: "flex"}}>
-                        {results && results.length > 0 && <img src={results[0].background_image} alt={`Slide ${0}`} style={{ width: '1200px', height: '700px', borderRadius: "50px"}} /> }
-                        
-                        {results && results.length > 0 &&
-                            <>
-                            <div className={styles.bginfobox}>
-                                <div style={{marginLeft: "50px", marginRight: "50px", fontWeight: "300px"}}>
-                                    <div style={{fontSize: '26px', marginTop: "50px", color: "#FFFFFF", fontFamily: "ABeeZee", marginBottom: "250px"}}>{results[0].why}</div>
-                                    
-                                    <div>
-                                        <div style={{ display: 'flex', flexDirection: "column", fontSize: "15px", color: "#FFFFFF", marginBottom: "20px"}}>
-                                            <div><span style={{color: "#7C8ECA"}}>Release date: </span> {results[0].released}</div>
-                                            <div><span style={{color: "#7C8ECA"}}>Platform: </span> {results[0].parent_platforms.map(platform => platform.platform.name).join(', ')}</div>                                        
-                                            <div><span style={{color: "#7C8ECA"}}>Mode: </span> {results[0].released}</div>
-                                        </div>    
-                                        <div style={{ display: 'flex', justifyContent: 'flex-start'}}>
-                                            <div className={styles.tagbox}>{results[0].tags[0].name}</div>
-                                            <div className={styles.tagbox} style={{marginLeft: "10px"}}>{results[0].tags[1].name}</div>
-                                            <div className={styles.tagbox} style={{marginLeft: "10px"}}>{results[0].tags[2].name}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </>}
-                        </div>
+                    <div style={{display: "flex", flexDirection: "row"}}>
+                    <SearchBar handleSearch={handleSearch}/>                    
                     </div>
                     
                     {isLoading && <p>Loading...</p>}
-                    {results && results.length > 0 && (
-                        /* Similar Titles */
+                    {results && results.length > 0 && (                        
 
-                        <div style={{marginLeft: "100px", marginRight: "100px"}}>
-                        <div style={{fontFamily: "ABeeZee", color: "rgba(255, 255, 255, 0.6)", fontWeight: "700px", fontSize: "30px", }}>Similar Titles</div> 
-                        <Swiper
-                            className="min-h-[250px]" // ARBITARY VALUE
-                            slidesPerView={6} 
-                            navigation
-                            spaceBetween={1}
-                            autoplay={true}
-                            speed={1000}                        
-                            modules={[Navigation, Autoplay, Pagination]}                            
-                            
-                            style={{
-                            margin:"10px",
-                            }}
-                        >
-                            {results.map((item, index) => {
-                                if(index==0) return(<></>)
-                                return (
-                                    <SwiperSlide key={index}>
-                                        <img src={item.background_image} alt={`Slide ${index}`} style={{ width: '250px', height: '250px', borderRadius: "30px"}} />
-                                    </SwiperSlide>
-                                )
-                            })}
-                        </Swiper>
+                        <div >                        
+                        <Recommendations results={results}/>
+                        
+                        <Feedback/>
                         </div>
                     )}                    
                
@@ -133,12 +97,24 @@ const Landing = () => {
                             }
                             value={inputValue}
                         />
-                        <Rab className={styles.arrowRight} onClick={handleSearch}/>
-                    </div>                    
+                        <Rab className={styles.arrowRight} onClick={() => handleSearch(inputValue)}/>
+                    </div>
+                    <button onClick={loginButton}>Login</button>
+                    <button onClick={logoutButton}>Logout</button>
                 </>                
              )}
              
-             
+            
+        { !logged && !localStorage.getItem('email') && <GoogleLogin
+            onSuccess={credentialResponse => {
+                var credentialResponse = jwtDecode(credentialResponse.credential)
+                localStorage.setItem('email', credentialResponse['email'])
+                setLogged(true)
+            }}
+            onError={() => {
+                console.log('Login Failed');
+            }}
+        /> }
         </div>
     )
 }

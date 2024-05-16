@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+
+.container {
+    margin-left: auto;
+    margin-right: auto; 
+    max-width: fit-content;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    border-radius: 30px; /* Rounded corners */    
+    height: 50px;
+    margin-top: 2rem;
+}
+
+.input {
+    background: none; /* Transparent background */
+    border: none;  /* No border */
+    box-sizing: border-box;
+    font-family: 'ABeeZee', sans-serif;
+    color: white; /* White text color */
+    outline: none;  /* Removes outline on focus */
+    font-size: 1rem;
+    width: 40rem;
+        /* min-width: "10rem" */
+}
+
+@media screen and (max-width: 45rem) and (orientation: portrait) {
+    .input{
+        width: 25rem;
+    }
+}
+@media screen and (max-width: 35rem) and (orientation: portrait) {
+    .input{
+        width: 20rem;
+    }
+}

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+
+.container {
+    /* Rectangle 10 */
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    box-sizing: border-box;
+    background: linear-gradient(90deg, rgba(217, 217, 217, 0.0572) 0%, rgba(255, 255, 255, 0.13) 48.5%, rgba(100, 97, 97, 0.13) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 21px;
+    max-width: fit-content;
+    padding: 0.5rem;
+    
+    display: flex;        /* Use flexbox */
+    align-items: center; 
+    /* justify-content: start; */
+    gap: 1rem;   
+
+}
+
+.iconsize{
+    width: 2rem;
+    height: 2rem;
+}
+
+
+/* Likebar.module.css */
+.customTooltip {
+    font-family: 'ABeeZee', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    color: #FFFFFF; /* Setting text color to white */
+  }
+  
+  .customTooltip .MuiTooltip-tooltip { /* Targeting the tooltip's inner component */
+    background: radial-gradient(78.5% 78.5% at 50% 2.8%, rgba(217, 217, 217, 0.3) 0%, rgba(115, 115, 115, 0.3) 100%);
+    backdrop-filter: blur(5.8px);
+    border-radius: 6px;
+  }
+  
+
+@media screen and (max-width: 35rem) and (orientation: portrait) {
+    .iconsize{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
