@@ -1,15 +1,15 @@
 body {
-  margin: 0;
+  margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%; /* Ensure the body takes at least the full height of the viewport */    
-    padding: 0; /* Remove default padding */
-    background: #000000; /* Set your background color */
-    background-attachment: fixed; /* Keeps the background fixed during scrolling */
-    background-size: cover; 
+  padding: 0; /* Remove default padding */
+  background: #000000;
+  background-attachment: fixed; /* Keeps the background fixed during scrolling */
+  background-size: cover;
 }
 
 code {

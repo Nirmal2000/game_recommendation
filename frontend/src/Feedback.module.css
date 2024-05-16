@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
+
+.text{
+
+    font-family: 'ABeeZee', sans-serif;
+font-style: normal;
+font-weight: 300;
+font-size: 17px;
+line-height: 22px;
+
+color: #FFFFFF;
+
+mix-blend-mode: normal;
+opacity: 0.6;
+margin-left: 0.5rem;
+
+}

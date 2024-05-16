@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=ABeeZee&display=swap');
 
-
-.searchactive {
-    display: flex;
-    flex-direction: column; 
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 50px;
-    /* align-items: center;  */
-    /* width: 100%;  */
-    /* justify-content: center;  */
-    /* padding: 20px; */
-}
-
 .firstBackground {
     /* Updated with relative dimensions */
     position: absolute;
@@ -144,6 +131,6 @@ display: inline-block;
 }
 
 
-
-
-
+.inswiper:hover .overlay {
+    opacity: 1;
+}
